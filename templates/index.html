@@ -4,11 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01.Login Authentication</title>
-</head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <style>
+        body {
+            padding: 80px;
+            background-color: #000000;
+        }
+
+        .box {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            overflow: hidden;
+            background: #e5e7eb;
+            border: 1px solid #e5e7eb;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .btn-dark {
+            background-color: #dd390b;
+            border-color: #dd390b;
+        }
+
+        .btn-dark:hover {
+            background-color: #e6e6e6;
+            color: #000;
+
+        }
+
+        .forgot-password-link a:hover {
+            color: #e6e6e6;
+
+        }
+
+        .sing-up-accounts a:hover {
+            color: #e6e6e6;
+        }
+    </style>
 
 <body>
+    <section class="container">
+        <div class="row content d-flex justify-content-center">
+            <div class="col-md-6 box">
+                <h2 class="mb-4 text-center fs-1">Login</h2>
+                <form class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input class="form-control rounded" type="email" id="email" name="email" required>
+                        <label class="form-label" for="email">Email <i class="fa-regular fa-envelope"></i></label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control rounded" type="password" id="password" name="password" required>
+                        <label class="form-label" for="password">Password <i class="fa-solid fa-key"></i></label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-dark border-0 rounded">Login</button>
+                    </div>
+                    <div class="forgot-password-link mb-3 text-sm-end">
+                        <a href="#" class="text-decoration-none" title="Forgot Password">Forgot Password?</a>
+                    </div>
+                </form>
+                <div class="sing-up-accounts">
+                    <p class="text-center">Don't Have Account</p>
+                    <p class="text-center"><a href="#">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
