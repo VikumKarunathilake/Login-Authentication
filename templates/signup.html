@@ -7,87 +7,39 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <style>
-        body {
-            padding: 80px;
-            background-color: #000000;
-        }
-
-        .box {
-            background: #e5e7eb;
-            border: 1px solid #e5e7eb;
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Add a subtle shadow */
-        }
-
-        .btn-dark {
-            background-color: #dd390b;
-            border-color: #dd390b;
-        }
-
-        .btn-dark:hover {
-            background-color: #e6e6e6;
-            color: #000;
-        }
-
-        .forgot-password-link a:hover {
-            color: #000000;
-        }
-
-        .sign-in-accounts a:hover {
-            /* Corrected class name */
-            color: #000000;
-        }
-
-        .form-floating>label {
-            /* Style form labels */
-            left: 0;
-            /* Align labels to the left */
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
 <body>
-    <section class="container">
-        <div class="row content d-flex justify-content-center">
-            <div class="col-md-6 box">
-                <h2 class="mb-4 text-center fs-1">Sign Up</h2>
-                <form class="mb-4">
-                    <div class="form-floating mb-3">
-                        <input class="form-control rounded" type="text" id="username" name="username" required>
-                        <label class="form-label" for="username">Username <i class="fa-solid fa-user"></i></label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control rounded" type="email" id="email" name="email" required>
-                        <label class="form-label" for="email">Email <i class="fa-regular fa-envelope"></i></label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control rounded" type="password" id="password" name="password" required>
-                        <label class="form-label" for="password">Password <i class="fa-solid fa-key"></i></label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control rounded" type="password" id="confirmPassword" name="confirmPassword"
-                            required>
-                        <label class="form-label" for="confirmPassword">Confirm Password <i
-                                class="fa-solid fa-key"></i></label>
-                    </div>
-                    <div class="d-grid gap-2 mb-3">
-                        <button type="submit" class="btn btn-dark border-0 rounded">Sign Up</button>
-                    </div>
-                </form>
-                <div class="sign-in-accounts text-center"> </div>
-                <p class="text-center">Already Have Account?</p>
-                <p class="text-center"><a href="login.html">Sign In</a></p>
-
-            </div>
+    <div class="col-md-6 box">
+        <h2 class="mb-4 text-center fs-1">Sign Up</h2>
+        <form> </form>
+        <div class="form-floating mb-3">
+            <input type="username" class="form-control" id="username" name="username" placeholder="name" required>
+            <label for="username"><i class="fa-solid fa-user"></i> User name</label>
         </div>
-    </section>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+            <label for="email"><i class="fa-solid fa-envelope"></i> Email </label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            <label class="form-label" for="password"><i class="fa-solid fa-key"></i> Password </label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                placeholder="Confirm Password" required>
+            <label class="form-label" for="confirmPassword"><i class="fa-solid fa-key"></i> Confirm Password </label>
+        </div>
 
+        <div class="d-grid gap-2 mb-3">
+            <button type="submit" class="btn btn-dark border-0 rounded">Sign Up</button>
+        </div>
+        <p class="text-center">Already have an account? </p>
+        <p class="text-center"><a href="login.html">Sign In</a></p>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
