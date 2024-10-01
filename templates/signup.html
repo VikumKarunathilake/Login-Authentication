@@ -13,30 +13,47 @@
 <body>
     <div class="col-md-6 box">
         <h2 class="mb-4 text-center fs-1">Sign Up</h2>
-        <form> </form>
-        <div class="form-floating mb-3">
-            <input type="username" class="form-control" id="username" name="username" placeholder="name" required>
-            <label for="username"><i class="fa-solid fa-user"></i> User name</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
-            <label for="email"><i class="fa-solid fa-envelope"></i> Email </label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-            <label class="form-label" for="password"><i class="fa-solid fa-key"></i> Password </label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                placeholder="Confirm Password" required>
-            <label class="form-label" for="confirmPassword"><i class="fa-solid fa-key"></i> Confirm Password </label>
-        </div>
 
-        <div class="d-grid gap-2 mb-3">
-            <button type="submit" class="btn btn-dark border-0 rounded">Sign Up</button>
+        <!-- Flash message section -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="alert alert-dismissible fade show">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} mt-2" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
         </div>
-        <p class="text-center">Already have an account? </p>
-        <p class="text-center"><a href="login.html">Sign In</a></p>
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                <label for="username"><i class="fa-solid fa-user"></i> Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                    required>
+                <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    required>
+                <label for="password"><i class="fa-solid fa-key"></i> Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                    placeholder="Confirm Password" required>
+                <label for="confirmPassword"><i class="fa-solid fa-key"></i> Confirm Password</label>
+            </div>
+
+            <div class="d-grid gap-2 mb-3">
+                <button type="submit" class="btn btn-dark border-0 rounded">Sign Up</button>
+            </div>
+            <p class="text-center">Already have an account? <a href="/login">Sign In</a></p>
+        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
