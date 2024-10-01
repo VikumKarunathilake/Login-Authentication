@@ -2,8 +2,11 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import URLSafeTimedSerializer
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail, Message
 from flask_migrate import Migrate
 import os
+from datetime import timedelta
+from datetime import timedelta
 
 app = Flask(__name__)
 
@@ -19,6 +22,17 @@ serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 # Initialize database and migration
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+# Flask-Mail Configuration
+app.config['MAIL_SERVER'] = 'smtp.your-email-provider.com'  # e.g., smtp.gmail.com
+app.config['MAIL_PORT'] = 587  # For TLS
+app.config['MAIL_USE_TLS'] = True  # Use TLS
+app.config['MAIL_USE_SSL'] = False  # Use SSL
+app.config['MAIL_USERNAME'] = 'your-email@example.com'  # Your email address
+app.config['MAIL_PASSWORD'] = 'your-email-password'  # Your email password
+app.config['MAIL_DEFAULT_SENDER'] = 'your-email@example.com'  # Default sender
+
+mail = Mail(app)
 
 # Define User model
 class User(db.Model):
@@ -92,6 +106,7 @@ def logout():
 @app.route('/')
 def dashboard():
     username = session.get('username')  # Check if the user is logged in
+    app.permanent_session_lifetime = timedelta(minutes=30)
     return render_template('index.html', username=username)
 
 # Forgot Password Route
