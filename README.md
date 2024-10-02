@@ -57,11 +57,7 @@ This project demonstrates a basic user authentication system implemented using F
 
 - Strong Passwords: Enforce strong password complexity rules.
 
-- Rate Limiting: Implement rate limiting on login attempts.
-
 - Session Management: Use secure session management practices (e.g. server-side sessions).
-
-- Input Sanitization: Sanitize all user inputs before displaying them on the HTML pages to prevent XSS vulnerabilities.
 
 ## Contributing
 - Contributions are welcome! Please open an issue or submit a pull request.
