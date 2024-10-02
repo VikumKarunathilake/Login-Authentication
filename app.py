@@ -4,19 +4,21 @@ from itsdangerous import URLSafeTimedSerializer
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 from flask_migrate import Migrate
+from dotenv import load_dotenv
+from datetime import timedelta
 import os
-from datetime import timedelta
-from datetime import timedelta
+
+
 
 app = Flask(__name__)
+load_dotenv()
 
 # Configuring the SQLite database
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.config['SECRET_KEY'] = 'ad167372e8cd9f276998fa670e49c67d88faf1d77c20a98f'
-# Create a serializer for generating and validating tokens
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 # Initialize database and migration
@@ -24,13 +26,12 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Flask-Mail Configuration
-app.config['MAIL_SERVER'] = 'smtp.your-email-provider.com'  # e.g., smtp.gmail.com
-app.config['MAIL_PORT'] = 587  # For TLS
-app.config['MAIL_USE_TLS'] = True  # Use TLS
-app.config['MAIL_USE_SSL'] = False  # Use SSL
-app.config['MAIL_USERNAME'] = 'your-email@example.com'  # Your email address
-app.config['MAIL_PASSWORD'] = 'your-email-password'  # Your email password
-app.config['MAIL_DEFAULT_SENDER'] = 'your-email@example.com'  # Default sender
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465  # Use 465 for SSL
+app.config['MAIL_USE_TLS'] = False  # Set to False when using port 465
+app.config['MAIL_USE_SSL'] = True  # Set to True when using port 465
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 
 mail = Mail(app)
 
@@ -114,18 +115,23 @@ def dashboard():
 def forgot_password():
     if request.method == 'POST':
         email = request.form['email']
-        
-        # Find the user by email
         user = User.query.filter_by(email=email).first()
 
         if user:
             # Generate a secure token for password reset
             token = serializer.dumps(user.email, salt='password-reset-salt')
             reset_url = url_for('reset_password', token=token, _external=True)
-            
-            # Simulate sending the reset link (Replace with actual email sending)
-            print(f'Reset link: {reset_url}')
-            
+
+            # Send the reset link via email
+            msg = Message(
+                subject='Password Reset Request',
+                sender=app.config['MAIL_USERNAME'],
+                recipients=[email]
+                )
+            msg.body = f'Click the link to reset your password: {reset_url}'
+            mail.send(msg)
+            print(f"Mail send success: {app.config['MAIL_USERNAME']}")
+
             flash('A password reset link has been sent to your email.', 'success')
         else:
             flash('No account with that email found.', 'danger')
