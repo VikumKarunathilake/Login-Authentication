@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-Mail
+Flask-Migrate
+Flask-WTF
+WTForms
+itsdangerous
+python-dotenv
+email-validator
